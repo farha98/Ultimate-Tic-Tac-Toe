@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultimate Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Start Screen -->
+    <section class="start-screen" id="startScreen">
+      <div class="start-card">
+        <h1 class="start-title">Tic Tac Toe</h1>
+        <p class="start-sub">Ultimate Edition — Play. Win. Rematch.</p>
+
+        <div class="start-grid">
+          <div class="start-field">
+            <label for="playerXName">Player X</label>
+            <input id="playerXName" type="text" placeholder="e.g., Nazhan" maxlength="14" />
+          </div>
+
+          <div class="vs">VS</div>
+
+          <div class="start-field">
+            <label for="playerOName">Player O</label>
+            <input id="playerOName" type="text" placeholder="e.g., Rafi / Computer" maxlength="14" />
+          </div>
+        </div>
+
+        <div class="start-actions">
+          <div class="start-row">
+            <label class="mini">Mode</label>
+            <select id="startMode">
+              <option value="pvp" selected>Player vs Player</option>
+              <option value="cpu">Player vs Computer</option>
+            </select>
+          </div>
+
+          <div class="start-row">
+            <label class="mini">Difficulty</label>
+            <select id="startDifficulty">
+              <option value="easy">Easy</option>
+              <option value="medium" selected>Medium</option>
+              <option value="hard">Hard (Unbeatable)</option>
+            </select>
+          </div>
+
+          <div class="start-row">
+            <label class="mini">Best Of</label>
+            <select id="startBestOf">
+              <option value="1">1</option>
+              <option value="3" selected>3</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <button id="startBtn" type="button">Start Game</button>
+        </div>
+
+        <p class="start-foot">Made with ❤️ — Team First Mode</p>
+      </div>
+    </section>
+
+    <!-- Result Overlay -->
+    <div class="overlay hide" id="overlay">
+      <div class="modal">
+        <h2 id="msgTitle">Result</h2>
+        <p id="msg">Winner</p>
+        <div class="modal-actions">
+          <button id="nextRoundBtn" type="button">Next Round</button>
+          <button id="restartMatchBtn" type="button">Restart Match</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas" class="confetti"></canvas>
+
+    <main class="app">
+      <header class="header">
+        <div>
+          <h2 class="title">Ultimate Tic Tac Toe</h2>
+          <p class="subtitle" id="subTitle">Best of 3 • Medium</p>
+        </div>
+
+        <div class="header-actions">
+          <button id="openStart" class="ghost" type="button">Change Setup</button>
+
+          <label class="toggle ghost">
+            <input id="themeToggle" type="checkbox" />
+            <span>Light</span>
+          </label>
+        </div>
+      </header>
+
+      <section class="topbar" aria-label="Status and controls">
+        <div class="card">
+          <div class="label">Turn</div>
+          <div class="value" id="status">X</div>
+          <div class="small" id="turnName">Player X</div>
+        </div>
+
+        <div class="scoreboard">
+          <div class="pill">X Wins: <span id="scoreX">0</span></div>
+          <div class="pill">O Wins: <span id="scoreO">0</span></div>
+          <div class="pill">Draw: <span id="scoreD">0</span></div>
+        </div>
+
+        <div class="controls">
+          <select id="mode">
+            <option value="pvp">PvP</option>
+            <option value="cpu">CPU</option>
+          </select>
+
+          <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+
+          <select id="bestOf">
+            <option value="1">Best of 1</option>
+            <option value="3">Best of 3</option>
+            <option value="5">Best of 5</option>
+          </select>
+
+          <label class="toggle">
+            <input id="soundToggle" type="checkbox" checked />
+            <span>Sound</span>
+          </label>
+
+          <button id="undoBtn" type="button">Undo</button>
+          <button id="resetBoardBtn" type="button">Reset Board</button>
+          <button id="clearAllBtn" type="button">Clear Score</button>
+        </div>
+      </section>
+
+      <section class="matchbar">
+        <div class="matchpill">
+          Match Target: <span id="matchTarget">2</span> wins
+        </div>
+        <div class="matchpill">
+          Current: <span id="matchX">0</span> - <span id="matchO">0</span>
+        </div>
+      </section>
+
+      <section class="board-wrap">
+        <div class="board" id="board" aria-label="Board">
+          <div class="win-line" id="winLine"></div>
+
+          <button class="cell" data-i="0" aria-label="Cell 1"></button>
+          <button class="cell" data-i="1" aria-label="Cell 2"></button>
+          <button class="cell" data-i="2" aria-label="Cell 3"></button>
+          <button class="cell" data-i="3" aria-label="Cell 4"></button>
+          <button class="cell" data-i="4" aria-label="Cell 5"></button>
+          <button class="cell" data-i="5" aria-label="Cell 6"></button>
+          <button class="cell" data-i="6" aria-label="Cell 7"></button>
+          <button class="cell" data-i="7" aria-label="Cell 8"></button>
+          <button class="cell" data-i="8" aria-label="Cell 9"></button>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span class="hint" id="hintText">Tip: Undo works (PvP: 1 move, CPU: 2 moves).</span>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
